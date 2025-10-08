@@ -89,7 +89,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -30,3 +30,9 @@ x86/
 # Others
 appsettings.Development.json
 *.log
+
+# Ignore all contents of wwwroot
+wwwroot/*
+
+# Keep the folder structure
+!wwwroot/.gitkeep
