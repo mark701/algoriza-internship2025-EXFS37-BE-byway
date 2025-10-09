@@ -62,14 +62,10 @@ Main user accounts table for the learning platform
 - PasswordHash, PasswordSalt - Secure password storage
 - FirstName, LastName
 - TypeSign - User registration type
+- Rule - User Rule If Admin or User 
 - CreateDateAndTime - Account creation timestamp
 
-#### **Admins**
-Administrative user accounts
-- **adminID** (PK) - Unique identifier
-- adminName, adminEmail
-- PasswordHash, PasswordSalt
-- CreateDateAndTime
+
 
 #### **Instructors**
 Course instructors/teachers
