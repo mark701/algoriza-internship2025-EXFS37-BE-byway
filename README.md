@@ -51,7 +51,7 @@ If you're using Gmail, you need to generate an **App Password**:
 
 The following diagram shows the database schema and relationships between entities:
 
-![Database ERD]
+![Database ERD](image1.png)
 
 ### Database Entities
 
