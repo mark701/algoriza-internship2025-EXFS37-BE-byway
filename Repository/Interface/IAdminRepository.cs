@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace Repository.Interface
 {
-    public interface IAdminRepository : IBaseRepository<Admins>
+    public interface IAdminRepository : IBaseRepository<Users>
     {
         Task<string> Login(UserLoginRequest userRequest);
+
+        Task<string> Register(UserRegisterRequest userRequest);
+
     }
 }

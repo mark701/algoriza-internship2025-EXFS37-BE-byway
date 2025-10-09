@@ -40,6 +40,9 @@ namespace Repository.Implemnetion
             if (Data != null)
             {
                 var IsVerifyPassword = _AuthService.VerifyPassword(userRequest.Password, Data.PasswordHash, Data.PasswordSlat);
+                if (Data.Rule != "User")
+                    throw new ArgumentException("Access denied. Only  users can log in.");
+
                 if (IsVerifyPassword)
                 {
                     var token = _AuthService.GenerateUserToken(Data);
@@ -65,7 +68,7 @@ namespace Repository.Implemnetion
             var existingEmail = await _context.users.AnyAsync(u => u.UserEmail == userRequest.UserEmail);
             if (existingEmail)
             {
-                throw new Exception("Email is already registered.");
+                throw new Exception("Email is already taken.");
             }
 
 
@@ -80,6 +83,7 @@ namespace Repository.Implemnetion
                 LastName= userRequest.LastName,
                 PasswordHash = hash,
                 PasswordSlat = salt,
+                Rule= "User",
 
             };
             

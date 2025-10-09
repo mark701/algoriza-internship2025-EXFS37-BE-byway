@@ -17,7 +17,8 @@ namespace Service.Context
 
 
         public DbSet<Payment> payments { get; set; }
-        public DbSet<Admins>admins { get; set; }
+
+        //public DbSet<Admins>admins { get; set; }
 
         public DbSet<categories> categories { get; set; }
         public DbSet<Content> contents { get; set; }

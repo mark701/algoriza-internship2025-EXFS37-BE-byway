@@ -17,6 +17,8 @@ namespace Domain.Models.DataBase.UserPersona
 
         public string UserEmail { get; set; }
 
+        public string Rule { get; set; }
+
         public string? PasswordHash { get; set; }
         public string? PasswordSlat { get; set; }
 

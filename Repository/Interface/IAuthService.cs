@@ -14,7 +14,7 @@ namespace Repository.Interface
         void CreatePasswordHash(string password, out string passwordHash, out string passwordSalt);
         bool VerifyPassword(string password, string storedHash, string storedSalt);
 
-        string GenerateAdminToken(Admins admins);
+        //string GenerateAdminToken(Admins admins);
         string GenerateUserToken(Users users);
 
         string? GetClaim(string claimType);

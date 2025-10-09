@@ -41,21 +41,21 @@ namespace Repository.Implemnetion
 
         }
 
-        public string GenerateAdminToken(Admins admins)
-        {
-            var claims = new List<Claim>
-            {
+        //public string GenerateAdminToken(Admins admins)
+        //{
+        //    var claims = new List<Claim>
+        //    {
 
-                new Claim(ClaimTypes.Name, admins.adminName),
-                new Claim(ClaimTypes.Email, admins.adminEmail),
-                new Claim(ClaimTypes.NameIdentifier, admins.adminID.ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
-            var Token = GenerateJwtToken(claims);
+        //        new Claim(ClaimTypes.Name, admins.adminName),
+        //        new Claim(ClaimTypes.Email, admins.adminEmail),
+        //        new Claim(ClaimTypes.NameIdentifier, admins.adminID.ToString()),
+        //        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        //    };
+        //    var Token = GenerateJwtToken(claims);
 
-            return Token;
+        //    return Token;
 
-        }
+        //}
 
         public string GenerateUserToken(Users users)
         {

@@ -38,6 +38,7 @@ namespace Algoriza_Project.Controllers.adminPersona
             try
             {
 
+
                 var token = await _unitOfWork.Admins.Login(userLogin);
 
 
@@ -62,7 +63,7 @@ namespace Algoriza_Project.Controllers.adminPersona
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register(AdminRegister adminRegister)
+        public async Task<IActionResult> Register(UserRegisterRequest adminRegister)
         {
             if (!ModelState.IsValid)
             {
@@ -76,20 +77,28 @@ namespace Algoriza_Project.Controllers.adminPersona
             try
             {
 
-                
-                authService.CreatePasswordHash(adminRegister.Password, out string hash, out string salt);
-                Admins AdminData =
-                new Admins()
-                {
-                    adminName = adminRegister.AdminName,
-                    adminEmail = adminRegister.AdminEmail,
-                    PasswordHash = hash,
-                    PasswordSlat = salt,
-                };
 
-                var data = await _unitOfWork.Admins.Add(AdminData);
-                await _unitOfWork.SaveChangesAsync();
-                var Token = authService.GenerateAdminToken(AdminData);
+
+                //authService.CreatePasswordHash(adminRegister.Password, out string hash, out string salt);
+                //Users AdminData =
+                //new Users()
+                //{
+                //    UserName = adminRegister.UserName,
+                //    UserEmail = adminRegister.UserEmail,
+                //    PasswordHash = hash,
+                //    PasswordSlat = salt,
+                //    FirstName = adminRegister.FirstName,
+                //    LastName = adminRegister.LastName,
+                //    Rule= "Admin",
+
+                //};
+
+                //var data = await _unitOfWork.Admins.Add(AdminData);
+                //await _unitOfWork.SaveChangesAsync();
+                //var Token = authService.GenerateUserToken(AdminData);
+
+
+                var Token = await _unitOfWork.Admins.Register(adminRegister);
 
 
                 if (Token != null)
