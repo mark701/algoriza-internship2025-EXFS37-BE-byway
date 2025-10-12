@@ -106,6 +106,7 @@ namespace Repository.Implemnetion
                 FirstName = socialSignRequest.FirstName,
                 LastName = socialSignRequest.LastName,
                 TypeSign = socialSignRequest.TypeSign,
+                Rule= "User",
 
             };
             var Data = await Find(x => x.UserEmail == socialSignRequest.UserEmail);
