@@ -51,7 +51,7 @@ If you're using Gmail, you need to generate an **App Password**:
 
 The following diagram shows the database schema and relationships between entities:
 
-![Database ERD](image.png)
+![Database ERD](image1.png)
 
 ### Database Entities
 
@@ -62,14 +62,10 @@ Main user accounts table for the learning platform
 - PasswordHash, PasswordSalt - Secure password storage
 - FirstName, LastName
 - TypeSign - User registration type
+- Rule - User Rule If Admin or User 
 - CreateDateAndTime - Account creation timestamp
 
-#### **Admins**
-Administrative user accounts
-- **adminID** (PK) - Unique identifier
-- adminName, adminEmail
-- PasswordHash, PasswordSalt
-- CreateDateAndTime
+
 
 #### **Instructors**
 Course instructors/teachers
