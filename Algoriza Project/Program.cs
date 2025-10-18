@@ -60,7 +60,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         builder =>
         {
-            builder.WithOrigins("http://localhost:3000")
+            builder.WithOrigins("https://mark701.github.io")
                    .AllowAnyMethod()
                    .AllowAnyHeader()
                    .AllowCredentials(); // IMPORTANT for SignalR
