@@ -23,7 +23,12 @@ builder.Services.Configure<EmailSettings>(
     builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddScoped<IEmailService, EmailService>();
 
-
+builder.Services.AddSignalR(options =>
+{
+    options.EnableDetailedErrors = true;
+    options.KeepAliveInterval = TimeSpan.FromSeconds(15);
+    options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -32,8 +37,9 @@ builder.Services.AddSwaggerGenJwtAuth();
 
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IChatService, ChatService>();
 
-
+builder.Services.AddHostedService<ConnectionCleanupService>();
 // To use Enums as strings without errors
 
 builder.Services.AddControllers()
@@ -54,9 +60,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         builder =>
         {
-            builder.AllowAnyOrigin()
+            builder.WithOrigins("http://localhost:3000")
                    .AllowAnyMethod()
-                   .AllowAnyHeader();
+                   .AllowAnyHeader()
+                   .AllowCredentials(); // IMPORTANT for SignalR
+
         });
 });
 
@@ -84,9 +92,11 @@ app.UseSwaggerUI(c =>
 app.UseStaticFiles();
 
 
- 
+
 
 app.UseRouting();
+
+
 
 
 app.UseHttpsRedirection();
@@ -95,5 +105,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<ChatHub>("/chathub");
+
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllers();
+//    endpoints.MapHub<ChatHub>("/chathub"); // Hub must be inside UseEndpoints
+//});
 
 app.Run();

@@ -19,6 +19,7 @@ namespace Repository.Interface
 
         Task<string> SocialSign(SocialRequest googleRequest);
 
+        Task<List<Users>> UserSearch(string Search);
 
     }
 }

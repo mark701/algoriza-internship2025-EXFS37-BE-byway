@@ -131,5 +131,41 @@ namespace Algoriza_Project.Controllers.UserPersona
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("UserSearch/{Search}")]
+        public async Task<IActionResult> UserSearch(string Search)
+        {
+            if (!ModelState.IsValid)
+            {
+
+
+                return BadRequest(ModelState);
+            }
+
+
+
+            try
+            {
+
+                var Data = await _unitOfWork.Users.UserSearch(Search);
+
+                if (Data == null || !Data.Any())
+                    return NotFound(new { message = "No users found" });
+
+                return Ok(Data);
+
+
+                
+            }
+            catch (SqlException ex)
+            {
+
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

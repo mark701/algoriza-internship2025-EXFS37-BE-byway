@@ -1,5 +1,6 @@
 ﻿using Domain.Enum;
 using Domain.Models.DataBase.AdminPersona;
+using Domain.Models.DataBase.Chat;
 using Domain.Models.DataBase.UserPersona;
 using Domain.Shared;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,6 @@ namespace Service.Context
 
         public DbSet<Payment> payments { get; set; }
 
-        //public DbSet<Admins>admins { get; set; }
 
         public DbSet<categories> categories { get; set; }
         public DbSet<Content> contents { get; set; }
@@ -35,6 +35,8 @@ namespace Service.Context
 
         public DbSet<Users> users{ get; set; }
 
+        public DbSet<ChatMessage> chatMessages { get; set; }
+        public DbSet<UserConnection> userConnections { get; set; }
 
 
 

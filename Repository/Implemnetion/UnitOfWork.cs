@@ -20,6 +20,8 @@ namespace Repository.Implemnetion
 
         public IAdminRepository Admins { get; private set; }
 
+
+        public IChatService ChatService { get; private set; }
         public ICategoryRepository categories { get; private set; }
 
         public IBaseRepository<Content> Content { get; private set; }
@@ -57,6 +59,8 @@ namespace Repository.Implemnetion
             UserCoursesHeader = new UserCourseRepository(_context, _authService,this,_emailService);
             UserCoursesDetail = new BaseRepository<UserCoursesDetail>(_context);
             Users = new UserRepository(_context, _authService, _emailService);
+
+            ChatService = new ChatService(_context);
 
 
         }

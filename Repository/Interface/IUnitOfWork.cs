@@ -31,6 +31,8 @@ namespace Repository.Interface
 
         IUserRepository Users { get; }
 
+        IChatService ChatService { get; }
+
 
         Task<int> SaveChangesAsync();
 

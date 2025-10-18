@@ -10,8 +10,10 @@ using Repository.Interface;
 using Service.Context;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -131,6 +133,30 @@ namespace Repository.Implemnetion
             return Token;
 
         }
+
+        public async Task<List<Users>> UserSearch(string Search)
+        {
+            List<Expression<Func<Users, bool>>> filters = new List<Expression<Func<Users, bool>>>();
+
+            // Always include the rule filter
+            filters.Add(u => u.Rule == "User");
+
+            if (!string.IsNullOrEmpty(Search))
+            {
+                // Search in FirstName, LastName, or UserEmail
+                filters.Add(u =>
+                    u.FirstName.Contains(Search) ||
+                    u.LastName.Contains(Search) ||
+                    u.UserEmail.Contains(Search)
+                );
+            }
+            var (totalCount, data) = await GetPagesAsync(1, 8, filters);
+
+            return data;
+
+
+        }
+
         private async Task SendWelcomeMsg(string email, string name)
         {
 
