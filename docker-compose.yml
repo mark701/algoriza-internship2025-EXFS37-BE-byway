@@ -1,0 +1,6 @@
+services:
+  algorizaproject:
+    image: ${DOCKER_REGISTRY-}algorizaproject
+    build:
+      context: .
+      dockerfile: Algoriza Project/Dockerfile
